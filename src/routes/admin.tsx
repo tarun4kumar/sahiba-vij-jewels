@@ -127,7 +127,7 @@ function OrdersTab() {
   const refresh = async () => {
     setLoading(true);
     const { data } = await supabase.from("orders").select("*").order("created_at", { ascending: false });
-    setOrders((data ?? []) as Order[]);
+    setOrders((data ?? []) as unknown as Order[]);
     setLoading(false);
   };
   useEffect(() => { refresh(); }, []);
