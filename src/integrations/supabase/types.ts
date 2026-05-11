@@ -14,13 +14,164 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admins: {
+        Row: {
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_address: string
+          customer_city: string
+          customer_name: string
+          customer_phone: string
+          customer_pincode: string
+          customer_state: string
+          id: string
+          items: Json
+          notes: string | null
+          order_id: string
+          payment_method: string
+          status: string
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_address: string
+          customer_city: string
+          customer_name: string
+          customer_phone: string
+          customer_pincode: string
+          customer_state: string
+          id?: string
+          items: Json
+          notes?: string | null
+          order_id: string
+          payment_method?: string
+          status?: string
+          total: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_address?: string
+          customer_city?: string
+          customer_name?: string
+          customer_phone?: string
+          customer_pincode?: string
+          customer_state?: string
+          id?: string
+          items?: Json
+          notes?: string | null
+          order_id?: string
+          payment_method?: string
+          status?: string
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          care_info: string | null
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          images: string[]
+          is_featured: boolean
+          is_limited_edition: boolean
+          materials: string | null
+          name: string
+          price: number
+          slug: string
+          stock_count: number
+          story: string | null
+          updated_at: string
+        }
+        Insert: {
+          care_info?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: string[]
+          is_featured?: boolean
+          is_limited_edition?: boolean
+          materials?: string | null
+          name: string
+          price: number
+          slug: string
+          stock_count?: number
+          story?: string | null
+          updated_at?: string
+        }
+        Update: {
+          care_info?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: string[]
+          is_featured?: boolean
+          is_limited_edition?: boolean
+          materials?: string | null
+          name?: string
+          price?: number
+          slug?: string
+          stock_count?: number
+          story?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
+      track_order: {
+        Args: { _order_id: string; _phone: string }
+        Returns: {
+          created_at: string
+          customer_name: string
+          items: Json
+          order_id: string
+          status: string
+          total: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
