@@ -72,11 +72,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sahiba Vij — Every Sparkle has Its Own Story" },
+      { name: "description", content: "Story-driven luxury Indian jewellery in micron gold polish — wearable heirlooms inspired by Bajirao Mastani and Heeramandi." },
+      { name: "author", content: "Sahiba Vij" },
+      { property: "og:title", content: "Sahiba Vij — Luxury Indian Jewellery" },
+      { property: "og:description", content: "Story-driven jewellery in micron gold polish. Every sparkle has its own story." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -108,12 +108,25 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const isAdmin = router.state.location.pathname.startsWith("/admin");
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="min-h-screen flex flex-col">
+        {!isAdmin && <Header />}
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        {!isAdmin && <Footer />}
+      </div>
+      <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
 }
