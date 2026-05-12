@@ -32,7 +32,7 @@ function CheckoutPage() {
   if (items.length === 0 && !confirmedOrder) {
     return (
       <div className="container py-32 text-center">
-        <h1 className="font-serif text-3xl text-primary mb-4">Your cart is empty</h1>
+        <h1 className="font-serif text-3xl text-foreground mb-4">Your cart is empty</h1>
         <Link to="/shop" className="text-gold border-b border-gold">Browse the collection</Link>
       </div>
     );
@@ -47,12 +47,12 @@ function CheckoutPage() {
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-2xl text-center">
         <CheckCircle2 className="w-16 h-16 text-gold mx-auto mb-6" />
         <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Order Placed</p>
-        <h1 className="font-serif text-4xl md:text-5xl text-primary mb-4">Thank you, {confirmedOrder.name.split(" ")[0]}!</h1>
+        <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-4">Thank you, {confirmedOrder.name.split(" ")[0]}!</h1>
         <div className="gold-divider w-24 mx-auto mb-8" />
 
-        <div className="bg-card rounded-2xl p-8 mb-8 shadow-soft">
+        <div className="bg-card rounded-md p-8 mb-8">
           <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground mb-2">Your Order ID</p>
-          <p className="font-serif text-3xl md:text-4xl text-primary mb-6 tracking-wider">{confirmedOrder.orderId}</p>
+          <p className="font-serif text-3xl md:text-4xl text-foreground mb-6 tracking-wider">{confirmedOrder.orderId}</p>
           <div className="text-sm text-foreground/75 italic">{confirmedOrder.itemList}</div>
           <p className="text-lg mt-3 font-medium">{formatINR(confirmedOrder.total)}</p>
         </div>
@@ -61,7 +61,7 @@ function CheckoutPage() {
           href={waUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center justify-center gap-3 w-full max-w-md bg-[#25D366] text-white py-5 rounded-full text-base tracking-wider uppercase font-medium hover:opacity-90 transition-all shadow-gold"
+          className="inline-flex items-center justify-center gap-3 w-full max-w-md bg-[#25D366] text-white py-5 rounded-full text-base tracking-wider uppercase font-medium hover:opacity-90 transition-all"
         >
           <MessageCircle className="w-5 h-5" /> Confirm Your Order on WhatsApp
         </a>
@@ -123,7 +123,7 @@ function CheckoutPage() {
 
   return (
     <div className="container mx-auto px-4 md:px-8 py-12 md:py-16">
-      <h1 className="font-serif text-4xl md:text-5xl text-primary mb-3">Checkout</h1>
+      <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-3">Checkout</h1>
       <div className="gold-divider w-24 mb-10" />
 
       <form onSubmit={handleSubmit} className="grid lg:grid-cols-[1fr_400px] gap-12">
@@ -138,7 +138,7 @@ function CheckoutPage() {
           </div>
           <Field name="notes" label="Order Notes (optional)" textarea />
 
-          <div className="bg-card border border-gold/30 rounded-2xl p-6 mt-8">
+          <div className="bg-card border border-gold/30 rounded-md p-6 mt-8">
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-2">Payment</p>
             <p className="text-sm text-foreground/80 leading-relaxed">
               We confirm every order personally on WhatsApp. Payment options:
@@ -147,8 +147,8 @@ function CheckoutPage() {
           </div>
         </div>
 
-        <aside className="bg-card rounded-2xl p-6 md:p-8 shadow-soft h-fit lg:sticky lg:top-24">
-          <h2 className="font-serif text-2xl text-primary mb-6">Order Summary</h2>
+        <aside className="bg-card rounded-md p-6 md:p-8 h-fit lg:sticky lg:top-24">
+          <h2 className="font-serif text-2xl text-foreground mb-6">Order Summary</h2>
           <div className="space-y-3 mb-4">
             {items.map((i) => (
               <div key={i.id} className="flex justify-between text-sm">
@@ -159,7 +159,7 @@ function CheckoutPage() {
           </div>
           <div className="gold-divider my-4" />
           <div className="flex justify-between text-lg font-medium mb-6"><span>Total</span><span>{formatINR(subtotal)}</span></div>
-          <button disabled={submitting} className="w-full bg-primary text-primary-foreground py-4 rounded-full text-sm tracking-[0.2em] uppercase hover:bg-wine/90 transition-all shadow-soft disabled:opacity-50">
+          <button disabled={submitting} className="w-full bg-primary text-primary-foreground py-4 rounded-full text-sm tracking-[0.2em] uppercase hover:bg-gold-soft transition-all disabled:opacity-50">
             {submitting ? "Placing Order…" : "Place Order"}
           </button>
         </aside>

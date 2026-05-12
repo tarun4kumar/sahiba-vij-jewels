@@ -46,7 +46,7 @@ function AdminPage() {
   if (isAdmin === null) return <Center>Checking access…</Center>;
   if (!isAdmin) return (
     <Center>
-      <p className="font-serif text-2xl text-primary mb-3">No admin access</p>
+      <p className="font-serif text-2xl text-foreground mb-3">No admin access</p>
       <p className="text-foreground/70 mb-4 text-sm max-w-md">Your account is signed in but isn't marked as admin. Add your user ID to the <code className="bg-card px-1 rounded">admins</code> table from the backend dashboard.</p>
       <p className="text-xs text-muted-foreground mb-6">Your ID: <code className="bg-card px-1 rounded">{session.user.id}</code></p>
       <button onClick={() => supabase.auth.signOut()} className="text-sm text-gold border-b border-gold">Sign out</button>
@@ -58,7 +58,7 @@ function AdminPage() {
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link to="/" className="font-serif text-2xl text-primary">Sahiba Vij</Link>
+            <Link to="/" className="font-serif text-2xl text-foreground">Sahiba Vij</Link>
             <span className="text-xs tracking-[0.3em] uppercase text-gold">Admin</span>
           </div>
           <div className="flex items-center gap-3">
@@ -68,7 +68,7 @@ function AdminPage() {
         </div>
         <div className="container mx-auto px-4 flex gap-2">
           {(["orders", "products"] as const).map((t) => (
-            <button key={t} onClick={() => setTab(t)} className={`px-5 py-3 text-sm tracking-wider uppercase border-b-2 -mb-px ${tab === t ? "border-gold text-primary" : "border-transparent text-foreground/60"}`}>{t}</button>
+            <button key={t} onClick={() => setTab(t)} className={`px-5 py-3 text-sm tracking-wider uppercase border-b-2 -mb-px ${tab === t ? "border-gold text-foreground" : "border-transparent text-foreground/60"}`}>{t}</button>
           ))}
         </div>
       </header>
@@ -99,8 +99,8 @@ function AuthScreen() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <form onSubmit={submit} className="w-full max-w-md bg-card rounded-2xl p-8 shadow-soft">
-        <h1 className="font-serif text-3xl text-primary mb-2">Admin Access</h1>
+      <form onSubmit={submit} className="w-full max-w-md bg-card rounded-md p-8">
+        <h1 className="font-serif text-3xl text-foreground mb-2">Admin Access</h1>
         <p className="text-sm text-foreground/70 mb-6">{mode === "signin" ? "Sign in to manage products and orders." : "Create an admin account."}</p>
         <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full px-4 py-3 rounded-xl bg-background border border-border mb-3 focus:outline-none focus:border-gold" />
         <input type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full px-4 py-3 rounded-xl bg-background border border-border mb-5 focus:outline-none focus:border-gold" />
@@ -144,10 +144,10 @@ function OrdersTab() {
   return (
     <div className="space-y-4">
       {orders.map((o) => (
-        <div key={o.id} className="bg-card rounded-2xl p-5 shadow-soft">
+        <div key={o.id} className="bg-card rounded-md p-5">
           <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
             <div>
-              <p className="font-serif text-xl text-primary">{o.order_id}</p>
+              <p className="font-serif text-xl text-foreground">{o.order_id}</p>
               <p className="text-xs text-muted-foreground">{new Date(o.created_at).toLocaleString("en-IN")}</p>
             </div>
             <p className="text-lg font-medium">{formatINR(Number(o.total))}</p>
@@ -224,8 +224,8 @@ function ProductsTab() {
   if (editing) {
     const p = editing;
     return (
-      <form onSubmit={save} className="bg-card rounded-2xl p-6 shadow-soft space-y-3 max-w-2xl">
-        <h2 className="font-serif text-2xl text-primary mb-2">{p.id ? "Edit" : "New"} Product</h2>
+      <form onSubmit={save} className="bg-card rounded-md p-6 space-y-3 max-w-2xl">
+        <h2 className="font-serif text-2xl text-foreground mb-2">{p.id ? "Edit" : "New"} Product</h2>
         <Input name="name" label="Name" defaultValue={p.name} required />
         <Input name="slug" label="Slug" defaultValue={p.slug} required />
         <div className="grid grid-cols-2 gap-3">
@@ -255,7 +255,7 @@ function ProductsTab() {
       <button onClick={() => setEditing({})} className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm tracking-wider uppercase mb-6">+ Add Product</button>
       <div className="grid md:grid-cols-2 gap-4">
         {products.map((p) => (
-          <div key={p.id} className="bg-card rounded-2xl p-4 shadow-soft flex gap-4">
+          <div key={p.id} className="bg-card rounded-md p-4 flex gap-4">
             <img src={p.images[0]} alt="" className="w-20 h-20 rounded-lg object-cover" />
             <div className="flex-1 min-w-0">
               <p className="font-serif text-lg text-primary truncate">{p.name}</p>
