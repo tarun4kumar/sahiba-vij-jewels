@@ -34,7 +34,7 @@ function ShopPage() {
     <div className="container mx-auto px-4 md:px-8 py-12 md:py-20">
       <div className="text-center mb-12">
         <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">The Collection</p>
-        <h1 className="font-serif text-4xl md:text-6xl text-primary">Shop All</h1>
+        <h1 className="font-serif text-4xl md:text-6xl text-foreground">Shop All</h1>
         <div className="gold-divider w-24 mx-auto mt-5" />
       </div>
 
@@ -45,7 +45,7 @@ function ShopPage() {
             onClick={() => setCat(c.value)}
             className={`px-5 py-2 rounded-full text-sm tracking-wide transition-all ${
               cat === c.value
-                ? "bg-primary text-primary-foreground shadow-soft"
+                ? "bg-primary text-primary-foreground"
                 : "bg-card text-foreground/70 hover:bg-secondary border border-border"
             }`}
           >

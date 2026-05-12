@@ -18,22 +18,22 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/60">
-      <div className="container mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between">
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-background/85 border-b border-border">
+      <div className="container mx-auto px-5 md:px-10 h-16 md:h-20 flex items-center justify-between">
         <Link to="/" className="flex flex-col leading-none">
-          <span className="font-serif text-2xl md:text-3xl font-medium text-primary">{BRAND.name}</span>
-          <span className="hidden md:block text-[10px] tracking-[0.3em] uppercase text-muted-foreground mt-0.5">
+          <span className="font-serif text-2xl md:text-[1.7rem] text-foreground tracking-tight">{BRAND.name}</span>
+          <span className="hidden md:block text-[9px] tracking-[0.5em] uppercase text-muted-foreground mt-1">
             Heritage · Crafted
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {NAV.map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="text-sm tracking-wide text-foreground/80 hover:text-primary transition-colors"
-              activeProps={{ className: "text-primary font-medium" }}
+              className="text-[11px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+              activeProps={{ className: "text-foreground" }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
@@ -41,35 +41,33 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <Link to="/cart" className="relative p-2 rounded-full hover:bg-secondary transition-colors">
-            <ShoppingBag className="w-5 h-5" />
+        <div className="flex items-center gap-1">
+          <Link to="/cart" className="relative p-2 text-foreground/90 hover:text-gold transition-colors">
+            <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.4} />
             {count > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-accent text-accent-foreground text-[10px] font-medium w-5 h-5 rounded-full flex items-center justify-center">
-                {count}
-              </span>
+              <span className="absolute top-1 right-1 bg-gold w-1.5 h-1.5 rounded-full" />
             )}
           </Link>
           <button
-            className="md:hidden p-2 rounded-full hover:bg-secondary"
+            className="md:hidden p-2 text-foreground"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {open ? <X className="w-5 h-5" strokeWidth={1.4} /> : <Menu className="w-5 h-5" strokeWidth={1.4} />}
           </button>
         </div>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border/60 bg-background">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+        <div className="md:hidden border-t border-border bg-background">
+          <div className="container mx-auto px-5 py-6 flex flex-col gap-1">
             {NAV.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="py-3 px-2 text-sm text-foreground/80 border-b border-border/40 last:border-0"
-                activeProps={{ className: "text-primary font-medium" }}
+                className="py-3 text-xs tracking-[0.3em] uppercase text-muted-foreground border-b border-border last:border-0"
+                activeProps={{ className: "text-foreground" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}

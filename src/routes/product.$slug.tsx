@@ -66,11 +66,11 @@ function ProductPage() {
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           {/* Gallery */}
           <div>
-            <div className="aspect-square rounded-2xl overflow-hidden bg-card shadow-soft relative">
+            <div className="aspect-square rounded-md overflow-hidden bg-card relative">
               <img src={product.images[activeImg]} alt={product.name} className="w-full h-full object-cover" />
               {soldOut && (
                 <div className="absolute inset-0 flex items-center justify-center bg-foreground/30">
-                  <span className="bg-gradient-gold text-accent-foreground font-serif text-xl tracking-[0.3em] uppercase px-8 py-3 rounded-full shadow-gold">
+                  <span className="bg-gold text-accent-foreground font-serif text-xl tracking-[0.3em] uppercase px-8 py-3 rounded-full">
                     Sold Out
                   </span>
                 </div>
@@ -94,11 +94,11 @@ function ProductPage() {
           {/* Details */}
           <div>
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3 capitalize">{product.category}</p>
-            <h1 className="font-serif text-4xl md:text-5xl text-primary mb-4">{product.name}</h1>
+            <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-4">{product.name}</h1>
             <p className="text-2xl text-foreground/90 mb-6">{formatINR(Number(product.price))}</p>
 
             <div className="flex flex-wrap gap-2 mb-6">
-              <span className="inline-flex items-center gap-1.5 bg-gradient-gold text-accent-foreground text-xs tracking-wider uppercase px-3 py-1.5 rounded-full font-medium shadow-gold">
+              <span className="inline-flex items-center gap-1.5 bg-gold text-accent-foreground text-xs tracking-wider uppercase px-3 py-1.5 rounded-full font-medium">
                 <Sparkles className="w-3 h-3" /> Micron Gold Polish
               </span>
               {product.is_limited_edition && (
@@ -132,13 +132,13 @@ function ProductPage() {
               <div className="flex gap-3">
                 <button
                   onClick={addToCart}
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-4 rounded-full bg-primary text-primary-foreground text-sm tracking-[0.2em] uppercase hover:bg-wine/90 transition-all shadow-soft"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-4 rounded-full bg-primary text-primary-foreground text-sm tracking-[0.2em] uppercase hover:bg-gold-soft transition-all"
                 >
                   <ShoppingBag className="w-4 h-4" /> Add to Cart
                 </button>
                 <button
                   onClick={() => { addToCart(); navigate({ to: "/cart" }); }}
-                  className="flex-1 py-4 rounded-full bg-gradient-gold text-accent-foreground text-sm tracking-[0.2em] uppercase font-medium shadow-gold"
+                  className="flex-1 py-4 rounded-full bg-gold text-accent-foreground text-sm tracking-[0.2em] uppercase font-medium"
                 >
                   Buy Now
                 </button>
